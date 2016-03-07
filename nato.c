@@ -57,26 +57,21 @@ char* NUMBER[DIGITS] = {
 };
 
 int main(int argc, char **argv) {
-    if (argc < 2) {
-        fprintf(stderr, "Use: nato words to translate\n");
+    if (argc != 2) {
+        fprintf(stderr, "Use: nato \"words to translate\"\n");
         return 1;
     }
-    for (size_t i = 1; i < argc; i++) {
-        size_t wordLength = strlen(argv[i]);
-        for (size_t j = 0; j < wordLength; j++) {
-            char c = argv[i][j];
-            if (isalpha(c)) {
-                printf("%s ", NATO[tolower(c) - 'a']);
-            } else if (isdigit(c)) {
-                printf("%s ", NUMBER[c - '0']);
-            } else if (isspace(c)) {
-                printf("%s", WHITESPACE_STR);
-            } else {
-                printf("%c ", c);
-            }
-        }
-        if (i != argc - 1) {
+    size_t wordLength = strlen(argv[1]);
+    for (size_t j = 0; j < wordLength; j++) {
+        char c = argv[1][j];
+        if (isalpha(c)) {
+            printf("%s ", NATO[tolower(c) - 'a']);
+        } else if (isdigit(c)) {
+            printf("%s ", NUMBER[c - '0']);
+        } else if (isspace(c)) {
             printf("%s", WHITESPACE_STR);
+        } else {
+            printf("%c ", c);
         }
     }
     printf("\n");
